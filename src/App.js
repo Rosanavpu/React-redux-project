@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import Platforms from './containers/platforms/Platforms';
-import SearchAppBar from './containers/navbar/Navbar'
+import SearchAppBar from './containers/navbar/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <SearchAppBar />
       <Platforms />
     </div>

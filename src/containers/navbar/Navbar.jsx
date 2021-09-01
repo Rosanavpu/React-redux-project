@@ -40,14 +40,14 @@ export default function SearchAppBar() {
 
   return (
     <Container>
-      <AppBarContainer position="static">
+      <AppBarContainer position='static'>
         <Toolbar>
-          <Typography className={classes.title} variant="h6">
+          <Typography className={classes.title} variant='h6'>
             Platforms
           </Typography>
           <Container className={classes.search}>
             <InputBase
-              placeholder="Search…"
+              placeholder='Search…'
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
