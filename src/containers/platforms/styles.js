@@ -4,6 +4,7 @@ export const Container = styled.div`
   align-items: ${(props) => props.alignItems} !important;
   border: ${(props) => (props.border ? 'solid 1px red' : '')};
   display: flex;
+  flex-wrap: ${(props) => props.flexDirection ?? 'wrap'};
   height: ${(props) => props.height};
   justify-content: ${(props) => props.justifyContent} !important;
   margin-bottom: ${(props) => props.marginBottom};

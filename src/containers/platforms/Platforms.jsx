@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -9,10 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Container } from './styles';
+import { fetchPlatforms } from '../../store/actions';
+import Loader from '../../components/Loader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    width: 345,
   },
   media: {
     height: 0,
@@ -20,36 +23,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Platforms() {
+const RenderPage = () => {
+  const { platforms } = useSelector((s) => s.platformsReducers);
   const classes = useStyles();
-
   return (
     <Container padding={'1%'}>
-      <Card className={classes.root}>
-        <CardHeader title='Titulo juego{name}' subheader='year start' />
-        <CardMedia
-          className={classes.media}
-          image='https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z2FtZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'
-          title='Videogame'
-        />
-        <CardContent>
-          <Typography variant='body2' color='textSecondary' component='p'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum rerum eos, obcaecati, velit
-            officiis et veritatis, iusto soluta illum fugit nam voluptatibus aut quae temporibus
-            consequuntur illo voluptas! Eligendi, temporibus?
-          </Typography>
-        </CardContent>
-        <Container justifyContent={'flex-end'} alignItems={'center'}>
-          <CardActions>
-            <Typography variant='body2' color='textSecondary' component='p'>
-              Detail
-            </Typography>
-            <IconButton aria-label='add to favorites'>
-              <ArrowForwardIosIcon />
-            </IconButton>
-          </CardActions>
-        </Container>
-      </Card>
+      {platforms &&
+        platforms.map((elem) => (
+          <Container padding={'1%'}>
+            <Card className={classes.root}>
+              <CardHeader title={elem.name} />
+              <CardMedia
+                className={classes.media}
+                image={elem.background_image}
+                title='Videogame'
+              />
+              <Container justifyContent={'flex-end'} alignItems={'center'}>
+                <CardActions>
+                  <Typography variant='body2' color='textSecondary' component='p'>
+                    Detail
+                  </Typography>
+                  <IconButton aria-label='add to favorites'>
+                    <ArrowForwardIosIcon />
+                  </IconButton>
+                </CardActions>
+              </Container>
+            </Card>
+          </Container>
+        ))}
     </Container>
   );
+};
+
+export default function Platforms() {
+  const dispatch = useDispatch();
+  const { isLoadingPlatforms } = useSelector((s) => s.platformsReducers);
+
+  useEffect(() => {
+    dispatch(fetchPlatforms());
+  }, []);
+
+  return isLoadingPlatforms ? <Loader loading /> : <RenderPage />;
 }
