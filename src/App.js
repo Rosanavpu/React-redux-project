@@ -1,13 +1,20 @@
 import React from 'react';
-import Platforms from './containers/platforms/Platforms';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import VideoGames from './containers/videogames/Videogames';
 import SearchAppBar from './containers/navbar/Navbar';
+import DetailVideogame from './containers/detailVideogame/Detail';
 
 function App() {
   return (
-    <div className='App'>
-      <SearchAppBar />
-      <Platforms />
-    </div>
+    <Router>
+      <div>
+        <Route component={SearchAppBar} />
+        <Switch>
+          <Route exact path='/' component={VideoGames} />
+          <Route exact path='/videoGame/:id' component={DetailVideogame} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
