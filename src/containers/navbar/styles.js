@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
+import { Link } from 'react-router-dom';
 
 export const AppBarContainer = styled(AppBar)`
   background-color: #141a29;
@@ -17,4 +18,16 @@ export const Container = styled.div`
   margin-top: ${(props) => props.marginTop};
   width: ${(props) => props.width};
   min-height: ${(prop) => prop.height};
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;

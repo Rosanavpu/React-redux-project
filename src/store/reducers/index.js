@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import platformsReducers from './platformsReducers';
+import videogamesReducers from './videogamesReducers';
 
 export default combineReducers({
-  platformsReducers,
+  videogamesReducers,
 });

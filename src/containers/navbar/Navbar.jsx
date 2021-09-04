@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { AppBarContainer, Container } from './styles';
+import { AppBarContainer, Container, StyledLink } from './styles';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -39,23 +39,27 @@ export default function SearchAppBar() {
   const classes = useStyles();
 
   return (
-    <Container>
-      <AppBarContainer position='static'>
-        <Toolbar>
-          <Typography className={classes.title} variant='h6'>
-            Platforms
-          </Typography>
-          <Container className={classes.search}>
-            <InputBase
-              placeholder='Search…'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
-          </Container>
-        </Toolbar>
-      </AppBarContainer>
-    </Container>
+    <>
+      <Container>
+        <AppBarContainer position='static'>
+          <Toolbar>
+            <StyledLink to='/'>
+              <Typography className={classes.title} variant='h6'>
+                VideoGames
+              </Typography>
+            </StyledLink>
+            <Container className={classes.search}>
+              <InputBase
+                placeholder='Search…'
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
+            </Container>
+          </Toolbar>
+        </AppBarContainer>
+      </Container>
+    </>
   );
 }
