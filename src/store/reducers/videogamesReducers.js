@@ -6,6 +6,7 @@ import {
   FETCH_VIDEOGAME_DETAIL_SUCCESS,
   FETCH_VIDEOGAME_DETAIL_ERROR,
   FETCH_VIDEOGAME_SEARCH,
+  SET_VIDEOGAME_RESET,
 } from '../../utils/constants';
 
 const initialState = {
@@ -63,6 +64,7 @@ export default function videogamesReducers(state = initialState, action) {
         isLoadingVideogameDetail: false,
         isSuccessVideogameDetail: true,
         isErrorVideogameDetail: false,
+        videoGames: [],
       };
     }
     case FETCH_VIDEOGAME_DETAIL_ERROR: {
@@ -79,8 +81,15 @@ export default function videogamesReducers(state = initialState, action) {
         videoGameSearch: action.payload,
       };
     }
-
+    case SET_VIDEOGAME_RESET: {
+      return {
+        ...state,
+        videoGame: {},
+        isSuccessVideogameDetail: false,
+        isLoadingVideogameDetail: true,
+      };
+    }
     default:
-      return state;
+      return initialState;
   }
 }

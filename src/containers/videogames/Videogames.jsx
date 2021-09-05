@@ -12,8 +12,8 @@ import {
 } from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Container } from './styles';
-import { fetchVideogames, fetchVideogameDetail } from '../../store/actions';
-import Loader from '../../components/Loader';
+import { fetchVideogames, fetchVideogameDetail, setVideogameReset } from '../../store/actions';
+import Loader from '../../components/loader/Loader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +33,7 @@ const RenderPage = () => {
     <Container padding={'1%'}>
       {videoGameSearch &&
         videoGameSearch.map((elem, index) => (
-          <Container padding={'1%'} key={`card-container${index}`}>
+          <Container padding={'1%'} key={`card-search${index}`}>
             <Card className={classes.root}>
               <CardHeader title={elem.name} />
               <CardMedia
@@ -98,8 +98,9 @@ export default function VideoGames() {
   const { isLoadingVideoGames } = useSelector((s) => s.videogamesReducers);
 
   useEffect(() => {
+    dispatch(setVideogameReset());
     dispatch(fetchVideogames());
-  }, [dispatch]);
+  }, []);
 
   return isLoadingVideoGames ? <Loader loading /> : <RenderPage />;
 }

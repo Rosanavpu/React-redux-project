@@ -49,6 +49,10 @@ const RenderPage = () => {
       return dispatch(fetchVideogameBySearch(search));
     }
   };
+  const handleBlur = () => {
+    setValue('');
+    dispatch(fetchVideogameBySearch(''));
+  };
   return (
     <>
       <Container>
@@ -69,7 +73,7 @@ const RenderPage = () => {
                 value={value}
                 onChange={handleChange}
                 autoFocus={false}
-                onBlur={() => setValue('')}
+                onBlur={handleBlur}
               />
             </Container>
           </Toolbar>
