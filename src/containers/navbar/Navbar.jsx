@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { AppBarContainer, Container, StyledLink } from './styles';
+import { fetchVideogameBySearch } from '../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -35,9 +37,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+const RenderPage = () => {
   const classes = useStyles();
-
+  const [value, setValue] = useState('');
+  const { videoGames } = useSelector((s) => s.videogamesReducers);
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    let search = videoGames.filter((elem) => elem.name === e.target.value);
+    if (search.length > 0) {
+      return dispatch(fetchVideogameBySearch(search));
+    }
+  };
+  const handleBlur = () => {
+    setValue('');
+    dispatch(fetchVideogameBySearch(''));
+  };
   return (
     <>
       <Container>
@@ -55,6 +70,10 @@ export default function SearchAppBar() {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                value={value}
+                onChange={handleChange}
+                autoFocus={false}
+                onBlur={handleBlur}
               />
             </Container>
           </Toolbar>
@@ -62,4 +81,10 @@ export default function SearchAppBar() {
       </Container>
     </>
   );
+};
+
+export default function SearchAppBar() {
+  const classes = useStyles();
+
+  return <RenderPage />;
 }
