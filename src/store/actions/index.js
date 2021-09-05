@@ -7,6 +7,7 @@ import {
   FETCH_VIDEOGAME_DETAIL_SUCCESS,
   FETCH_VIDEOGAME_DETAIL_ERROR,
   API_KEY,
+  FETCH_VIDEOGAME_SEARCH,
 } from '../../utils/constants';
 import axios from 'axios';
 
@@ -17,6 +18,8 @@ export const fetchVideogamesError = actionCreator(FETCH_VIDEOGAMES_ERROR);
 export const fetchVideogameDetailRequest = actionCreator(FETCH_VIDEOGAME_DETAIL_REQUEST);
 export const fetchVideogameDetailSuccess = actionCreator(FETCH_VIDEOGAME_DETAIL_SUCCESS);
 export const fetchVideogameDetailError = actionCreator(FETCH_VIDEOGAME_DETAIL_ERROR);
+
+export const fetchVideogameBySearch = actionCreator(FETCH_VIDEOGAME_SEARCH);
 
 export const fetchVideogames = () => (dispatch) =>
   axios
