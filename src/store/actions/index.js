@@ -8,7 +8,6 @@ import {
   FETCH_VIDEOGAMES_ERROR,
   FETCH_VIDEOGAME_SEARCH,
   SET_VIDEOGAME_RESET,
-  API_KEY,
 } from '../../utils/constants';
 import axios from 'axios';
 
@@ -22,12 +21,15 @@ export const fetchVideogameDetailError = actionCreator(FETCH_VIDEOGAME_DETAIL_ER
 
 export const fetchVideogameBySearch = actionCreator(FETCH_VIDEOGAME_SEARCH);
 
+const KEY = process.env.REACT_APP_KEY;
+console.log('KEYYYYYYYYYY', KEY);
+
 export const setVideogameReset = actionCreator(SET_VIDEOGAME_RESET);
 
 export const fetchVideogames = () => (dispatch) => {
   dispatch(fetchVideogamesRequest());
   return axios
-    .get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+    .get(`https://api.rawg.io/api/games?key=${KEY}`)
     .then((payload) => dispatch(fetchVideogamesSuccess(payload.data.results)))
     .catch((e) => dispatch(fetchVideogamesError(e)));
 };
@@ -35,13 +37,13 @@ export const fetchVideogames = () => (dispatch) => {
 export const searchForQuery = (searchEngine, search) => (dispatch) => {
   dispatch(fetchVideogamesRequest({}));
   return axios
-    .get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+    .get(`https://api.rawg.io/api/games?key=${KEY}`)
     .then((payload) => dispatch(fetchVideogamesSuccess(payload.data.results)))
     .catch((e) => dispatch(fetchVideogamesError(e)));
 };
 
 export const fetchVideogameDetail = (id) => (dispatch) =>
   axios
-    .get(` https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+    .get(` https://api.rawg.io/api/games/${id}?key=${KEY}`)
     .then((videoGame) => dispatch(fetchVideogameDetailSuccess(videoGame.data)))
     .catch((e) => dispatch(fetchVideogameDetailError(e)));
