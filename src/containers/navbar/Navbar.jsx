@@ -84,7 +84,5 @@ const RenderPage = () => {
 };
 
 export default function SearchAppBar() {
-  const classes = useStyles();
-
   return <RenderPage />;
 }

@@ -22,7 +22,6 @@ export const fetchVideogameDetailError = actionCreator(FETCH_VIDEOGAME_DETAIL_ER
 export const fetchVideogameBySearch = actionCreator(FETCH_VIDEOGAME_SEARCH);
 
 const KEY = process.env.REACT_APP_KEY;
-console.log('KEYYYYYYYYYY', KEY);
 
 export const setVideogameReset = actionCreator(SET_VIDEOGAME_RESET);
 

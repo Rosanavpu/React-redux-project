@@ -100,6 +100,7 @@ export default function VideoGames() {
   useEffect(() => {
     dispatch(setVideogameReset());
     dispatch(fetchVideogames());
+    // eslint-disable-next-line
   }, []);
 
   return isLoadingVideoGames ? <Loader loading /> : <RenderPage />;
