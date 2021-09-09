@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardMedia, CardContent, Typography } from '@material-ui/core';
 import { Container, StyledButton } from './styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   media: {
@@ -17,9 +18,7 @@ const DetailVideogameComponent = ({ videoGame }) => {
   return (
     <Container justifyContent='center' width={'80%'} key={`Detail- ${videoGame.id}`}>
       <Card>
-        <StyledButton href='/'>
-          {'< Go to VideoGames'}
-        </StyledButton>
+        <StyledButton href='/'>{'< Go to VideoGames'}</StyledButton>
         <CardHeader title={videoGame.name} subheader={`Rating top: ${videoGame.rating_top}`} />
         {videoGame.background_image && (
           <CardMedia
@@ -38,6 +37,8 @@ const DetailVideogameComponent = ({ videoGame }) => {
   );
 };
 
-DetailVideogameComponent.propTypes;
+DetailVideogameComponent.propTypes = {
+  videoGame: PropTypes.object,
+};
 
-export { DetailVideogameComponent };
+export default DetailVideogameComponent;
