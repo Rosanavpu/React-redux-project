@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { AppBarContainer, Container, StyledLink } from './styles';
+import { AppBarContainer, Container } from './styles';
 import PropTypes from 'prop-types';
-import { Search } from '../searchVideogame';
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -15,14 +12,14 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    width: '100%',
+    width: '50%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
     },
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'black',
   },
   inputInput: {
     paddingLeft: `calc(1em + ${theme.spacing(2)}px)`,
@@ -37,28 +34,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const RenderPage = ({ search }) => {
+const Search = ({ handleBlur = () => {}, handleChange = () => {}, value = '' }) => {
   const classes = useStyles();
   return (
     <>
-      <Container>
+      <Container width={'15%'}>
         <AppBarContainer position='static'>
-          <Toolbar>
-            <StyledLink to='/'>
-              <Typography className={classes.title} variant='h6'>
-                VideoGames
-              </Typography>
-            </StyledLink>
-            {search && <Search />}
-          </Toolbar>
+          <Container className={classes.search}>
+            <InputBase
+              placeholder='Search…'
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              value={value}
+              onChange={handleChange}
+              autoFocus={false}
+              onBlur={handleBlur}
+            />
+          </Container>
         </AppBarContainer>
       </Container>
     </>
   );
 };
 
-RenderPage.propTypes = {
-  search: PropTypes.bool,
+Search.propTypes = {
+  handleBlur: PropTypes.func,
+  handleChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
-export { RenderPage };
+export { Search };

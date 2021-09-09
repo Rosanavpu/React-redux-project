@@ -1,26 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVideogames, setVideogameReset } from '../../store/actions';
 import Loader from '../../components/loader/Loader';
 import { VideogameComponent } from '../../components/videogames/VideogamesComponent.jsx';
-import SearchAppBar from '../../containers/navbar/Navbar';
+import Search from '../../containers/search';
 
-export default function VideoGames() {
+const VideoGames = () => {
+  const [searchVideoGame, setSearchVideoGame] = useState('');
   const dispatch = useDispatch();
-  const { isLoadingVideoGames, videoGames, videoGameSearch } = useSelector(
-    s => s.videogamesReducers
-  );
+  const { isLoadingVideoGames, videoGames } = useSelector(s => s.videogamesReducers);
+
   useEffect(() => {
     dispatch(setVideogameReset());
     dispatch(fetchVideogames());
   }, []);
 
+  const handleSearch = newSearch => {
+    setSearchVideoGame(newSearch);
+  };
+
+  const filteredVideoGames = useMemo(() => {
+    return videoGames.filter(elem => {
+      const lowerName = elem.name.toLowerCase();
+      return lowerName.includes(searchVideoGame);
+    });
+  }, [searchVideoGame, videoGames]);
+
   return isLoadingVideoGames ? (
     <Loader loading />
   ) : (
     <>
-      <SearchAppBar />
-      <VideogameComponent videoGames={videoGames} videoGameSearch={videoGameSearch} />
+      <Search handleSearch={handleSearch} searchVideoGame={searchVideoGame} />
+      <VideogameComponent videoGames={filteredVideoGames} videoGameSearch={[]} />
     </>
   );
-}
+};
+
+export default VideoGames;
