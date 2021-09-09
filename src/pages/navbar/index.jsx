@@ -15,7 +15,6 @@ const Navbar = () => {
   const { isLoadingVideoGames, videoGames, isLoadingVideogameDetail } = useSelector(
     s => s.videogamesReducers
   );
-  console.log(isLoadingVideogameDetail, 'dfghjhgfdesdfghgfdsa');
   const location = useLocation();
   const currentPath = location.pathname;
   const filteredVideoGames = useMemo(() => {
