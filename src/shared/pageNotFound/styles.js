@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { CardMedia, Card } from '@material-ui/core';
 
 export const Container = styled.div`
   align-items: ${props => props.alignItems} !important;
@@ -12,14 +11,7 @@ export const Container = styled.div`
   margin-left: ${props => props.marginLeft ?? 'auto'} !important;
   margin-right: ${props => props.marginRight ?? 'auto'} !important;
   margin-top: ${props => props.marginTop};
-  width: ${props => props.width};
+  width: ${props => props.width ?? '100%'};
   min-height: ${props => props.height};
   padding: ${props => props.padding ?? 'auto'};
-`;
-
-export const StyledCardMedia = styled(CardMedia)`
-  padding-top: 56.25%;
-`;
-export const StyledCard = styled(Card)`
-  width: 345px;
 `;

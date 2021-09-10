@@ -2,21 +2,35 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVideoGames } from '../../store/actions';
 import { useLocation } from 'react-router-dom';
-import VideoGames from '../../pages/videoGames/';
+import VideoGames from '../../pages/videoGames';
+import Loader from '../../shared/loader';
 import NavbarComponent from './components';
-import Loader from '../../shared/loader/';
 
 const Navbar = () => {
   const [searchVideoGame, setSearchVideoGame] = useState('');
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchVideoGames());
+    if (currentPath === '/') {
+      dispatch(fetchVideoGames());
+    }
   }, []);
+
   const { isLoadingVideoGames, videoGames, isLoadingVideogameDetail } = useSelector(
     s => s.videogamesReducers
   );
-  const location = useLocation();
-  const currentPath = location.pathname;
+
+  const handleChange = e => {
+    const newSearch = e.target?.value?.toLowerCase() ?? '';
+    handleSearch(newSearch);
+  };
+
+  const handleSearch = newSearch => {
+    setSearchVideoGame(newSearch);
+  };
+
   const filteredVideoGames = useMemo(() => {
     return (
       videoGames &&
@@ -26,14 +40,6 @@ const Navbar = () => {
       })
     );
   }, [searchVideoGame, videoGames]);
-
-  const handleChange = e => {
-    const newSearch = e.target?.value?.toLowerCase() ?? '';
-    handleSearch(newSearch);
-  };
-  const handleSearch = newSearch => {
-    setSearchVideoGame(newSearch);
-  };
 
   return (
     <>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/CardMedia';
 
 export const Container = styled.div`
   align-items: ${props => props.alignItems} !important;
@@ -22,4 +23,10 @@ export const StyledButton = styled(Button)`
   .MuiButton-label {
     color: #141a29;
   }
+`;
+
+export const StyledCardMedia = styled(CardMedia)`
+  padding: 20%;
+  width: 500px;
+  margin: auto;
 `;

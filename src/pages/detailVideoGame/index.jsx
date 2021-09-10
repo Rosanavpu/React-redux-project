@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import DetailVideogameComponent from './components';
-import Loader from '../../shared/loader';
+import DetailVideoGameComponent from './components';
 import _ from 'lodash';
 
-const DetailVideogame = () => {
-  const { isLoadingVideogameDetail, videoGame } = useSelector(s => s.videogamesReducers);
+const DetailVideoGame = () => {
+  const { videoGame } = useSelector(s => s.videogamesReducers);
 
   let isNotEmpty = _.isEmpty(videoGame);
-  return !isNotEmpty && <DetailVideogameComponent videoGame={videoGame} />;
+  return !isNotEmpty && <DetailVideoGameComponent videoGame={videoGame} />;
 };
 
-export default DetailVideogame;
+export default DetailVideoGame;

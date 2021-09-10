@@ -2,24 +2,11 @@ import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { AppBarContainer, Container, StyledLink } from './styles';
-import InputBase from '@material-ui/core/InputBase';
+import { AppBarContainer, Container, StyledLink, ContainerSearch, StyledInputBase } from './styles';
 import PropTypes from 'prop-types';
+import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles(theme => ({
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  },
   inputRoot: {
     color: 'inherit',
   },
@@ -43,11 +30,19 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
       <Container>
         <AppBarContainer position='static'>
           <Toolbar>
-            <Typography className={classes.title} variant='h6'>
-              VideoGames
-            </Typography>
+            <Typography variant='h6'>VideoGames</Typography>
             {!searchInput && (
-              <Container className={classes.search}>
+              <ContainerSearch>
+                {/* <StyledInputBase
+                  placeholder='Search…'
+                  // classes={{
+                  //   root: classes.inputRoot,
+                  //   input: classes.inputInput,
+                  // }}
+                  value={value}
+                  onChange={handleChange}
+                  autoFocus={false}
+                /> */}
                 <InputBase
                   placeholder='Search…'
                   classes={{
@@ -58,7 +53,7 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
                   onChange={handleChange}
                   autoFocus={false}
                 />
-              </Container>
+              </ContainerSearch>
             )}
           </Toolbar>
         </AppBarContainer>
