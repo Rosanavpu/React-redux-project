@@ -16,16 +16,15 @@ const Navbar = () => {
     s => s.videogamesReducers
   );
   const location = useLocation();
-  const currentPath = location.pathname;
-  const filteredVideoGames = useMemo(() => {
-    return (
+  const filteredVideoGames = useMemo(
+    () =>
       videoGames &&
       videoGames.filter(elem => {
         let lowerName = elem.name.toLowerCase();
         return lowerName.includes(searchVideoGame);
-      })
-    );
-  }, [searchVideoGame, videoGames]);
+      }),
+    [searchVideoGame, videoGames]
+  );
 
   const handleChange = e => {
     const newSearch = e.target?.value?.toLowerCase() ?? '';
@@ -40,10 +39,10 @@ const Navbar = () => {
       <NavbarComponent
         handleChange={handleChange}
         value={searchVideoGame}
-        searchInput={currentPath.includes('/videoGame/')}
+        searchInput={location.pathname.includes('/videoGame/')}
       />
       {(isLoadingVideoGames || isLoadingVideogameDetail) && <Loader loading />}
-      <VideoGames videoGames={filteredVideoGames} />
+      {location.pathname === '/' && <VideoGames videoGames={filteredVideoGames} />}
     </>
   );
 };
