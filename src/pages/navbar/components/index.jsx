@@ -31,9 +31,9 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
         <AppBarContainer position='static'>
           <Toolbar>
             <Typography variant='h6'>VideoGames</Typography>
-            {!searchInput && (
+            {searchInput && (
               <ContainerSearch>
-                {/* <StyledInputBase
+                <StyledInputBase
                   placeholder='Search…'
                   // classes={{
                   //   root: classes.inputRoot,
@@ -42,8 +42,8 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
                   value={value}
                   onChange={handleChange}
                   autoFocus={false}
-                /> */}
-                <InputBase
+                />
+                {/* <InputBase
                   placeholder='Search…'
                   classes={{
                     root: classes.inputRoot,
@@ -52,7 +52,7 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
                   value={value}
                   onChange={handleChange}
                   autoFocus={false}
-                />
+                /> */}
               </ContainerSearch>
             )}
           </Toolbar>

@@ -46,7 +46,7 @@ const Navbar = () => {
       <NavbarComponent
         handleChange={handleChange}
         value={searchVideoGame}
-        searchInput={currentPath.includes('/videoGame/')}
+        searchInput={currentPath === '/'}
       />
       {(isLoadingVideoGames || isLoadingVideogameDetail) && <Loader loading />}
       <VideoGames videoGames={filteredVideoGames} />

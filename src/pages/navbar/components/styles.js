@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
+import { styled as styledM, alpha } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -54,29 +55,14 @@ export const ContainerSearch = styled.div`
   };
 `;
 
-export const StyledInputBase = styled(InputBase)`
-  margin: auto;
-  margin: auto;
+// export const StyledInputBase = styled(InputBase)`
+//   &.MuiInputBase-input {
+//     color: white !important;
+//     padding-left: '5%';
+//   }
+// `;
 
-  '&:focus': {
-    width: '20ch';
-  }
-  & .MuiInputBase-input {
-    font: inherit !important !important;
-    color: white !important;
-    width: 100% !important;
-    border: 0 !important;
-    height: 1.1876em !important;
-    margin: 0 !important;
-    display: block !important;
-    padding: 6px 0 7px !important;
-    min-width: 0 !important;
-    background: none !important;
-    box-sizing: content-box !important;
-    animation-name: mui-auto-fill-cancel !important;
-    letter-spacing: inherit !important;
-    animation-duration: 10ms !important;
-    -webkit-tap-highlight-color: transparent !important;
-    margin-left: 5%;
-  }
-`;
+export const StyledInputBase = styledM(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  paddingLeft: '5%',
+}));
