@@ -42,7 +42,9 @@ const Navbar = () => {
         searchInput={location.pathname.includes('/videoGame/')}
       />
       {(isLoadingVideoGames || isLoadingVideogameDetail) && <Loader loading />}
-      {location.pathname === '/' && <VideoGames videoGames={filteredVideoGames} />}
+      {location.pathname === '/' && (
+        <VideoGames videoGames={filteredVideoGames} searchVideoGame={searchVideoGame} />
+      )}
     </>
   );
 };
