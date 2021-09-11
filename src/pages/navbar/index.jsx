@@ -39,7 +39,7 @@ const Navbar = () => {
       <NavbarComponent
         handleChange={handleChange}
         value={searchVideoGame}
-        searchInput={location.pathname.includes('/videoGame/')}
+        searchInput={location.pathname === '/'}
       />
       {(isLoadingVideoGames || isLoadingVideogameDetail) && <Loader loading />}
       {location.pathname === '/' && (
