@@ -46,7 +46,7 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
             <Typography className={classes.title} variant='h6'>
               VideoGames
             </Typography>
-            {!searchInput && (
+            {searchInput && (
               <Container className={classes.search}>
                 <InputBase
                   placeholder='Search…'
