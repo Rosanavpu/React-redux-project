@@ -13,7 +13,7 @@ VideoGames.propTypes = {
 
 VideoGames.defaultProps = {
   videoGames: [],
-  searchVideoGame: [],
+  searchVideoGame: '',
 };
 
 export default VideoGames;
