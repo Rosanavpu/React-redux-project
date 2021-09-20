@@ -11,4 +11,9 @@ VideoGames.propTypes = {
   searchVideoGame: PropTypes.string,
 };
 
+VideoGames.defaultProps = {
+  videoGames: [],
+  searchVideoGame: [],
+};
+
 export default VideoGames;

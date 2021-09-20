@@ -29,4 +29,4 @@ To use the API, you can do removing the .example of the file .env.example, and t
 
 ### Detail 
 
-![Image Detail Videogame](DetailVideogame.png)
+![Image Detail Videogame](DetailVideoGame.png)

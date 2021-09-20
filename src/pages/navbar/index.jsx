@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import VideoGames from '../../pages/videoGames/';
 import NavbarComponent from './components';
 import Loader from '../../shared/loader/';
+import PageNotFound from '../../shared/pageNotFound';
 
 const Navbar = () => {
   const [searchVideoGame, setSearchVideoGame] = useState('');
@@ -12,9 +13,8 @@ const Navbar = () => {
   useEffect(() => {
     dispatch(fetchVideoGames());
   }, []);
-  const { isLoadingVideoGames, videoGames, isLoadingVideogameDetail } = useSelector(
-    s => s.videogamesReducers
-  );
+  const { isLoadingVideoGames, videoGames, isLoadingVideogameDetail, isErrorVideogameDetail } =
+    useSelector(s => s.videogamesReducers);
   const location = useLocation();
   const filteredVideoGames = useMemo(
     () =>
@@ -36,6 +36,7 @@ const Navbar = () => {
 
   return (
     <>
+      {isErrorVideogameDetail && <PageNotFound />}
       <NavbarComponent
         handleChange={handleChange}
         value={searchVideoGame}

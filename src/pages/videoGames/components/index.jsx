@@ -1,32 +1,14 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  Card,
-  CardHeader,
-  CardMedia,
-  CardActions,
-  IconButton,
-  Typography,
-} from '@material-ui/core';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import { Container } from './styles';
+import { CardHeader, CardActions, IconButton, Typography } from '@material-ui/core';
+import { Container, StyledCardMedia, StyledCard } from './styles';
 import { fetchVideoGameDetail } from '../../../store/actions';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%',
-  },
-}));
-
-const VideogameComponent = ({ videoGames, searchVideoGame }) => {
+const VideoGameComponent = ({ videoGames, searchVideoGame }) => {
   const dispatch = useDispatch();
-  const classes = useStyles();
   return (
     <Container padding={'1%'}>
       {videoGames && videoGames.length == 0 && searchVideoGame && searchVideoGame.length > 0 && (
@@ -39,13 +21,9 @@ const VideogameComponent = ({ videoGames, searchVideoGame }) => {
       {videoGames &&
         videoGames.map((elem, index) => (
           <Container padding={'1%'} key={`card-container${index}`}>
-            <Card className={classes.root}>
+            <StyledCard>
               <CardHeader title={elem.name} />
-              <CardMedia
-                className={classes.media}
-                image={elem.background_image}
-                title='Videogame'
-              />
+              <StyledCardMedia image={elem.background_image} title='Videogame' />
               <Container justifyContent={'flex-end'} alignItems={'center'}>
                 <CardActions>
                   <Typography variant='body2' color='textSecondary' component='p'>
@@ -62,13 +40,16 @@ const VideogameComponent = ({ videoGames, searchVideoGame }) => {
                   </Link>
                 </CardActions>
               </Container>
-            </Card>
+            </StyledCard>
           </Container>
         ))}
     </Container>
   );
 };
 
-VideogameComponent.propTypes;
+VideoGameComponent.propTypes = {
+  videoGames: PropTypes.array,
+  searchVideoGame: PropTypes.array,
+};
 
-export default VideogameComponent;
+export default VideoGameComponent;
