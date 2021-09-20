@@ -49,7 +49,7 @@ const VideoGameComponent = ({ videoGames, searchVideoGame }) => {
 
 VideoGameComponent.propTypes = {
   videoGames: PropTypes.array,
-  searchVideoGame: PropTypes.array,
+  searchVideoGame: PropTypes.string,
 };
 
 export default VideoGameComponent;
