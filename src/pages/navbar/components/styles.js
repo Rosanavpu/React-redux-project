@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
-import { styled as styledM, alpha } from '@material-ui/styles';
+import { styled as styledM } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 
 export const AppBarContainer = styled(AppBar)`
-  background-color: #141a29;
+  background-color: #141a29 !important;
 `;
 
 export const Container = styled.div`
@@ -55,14 +55,7 @@ export const ContainerSearch = styled.div`
   };
 `;
 
-// export const StyledInputBase = styled(InputBase)`
-//   &.MuiInputBase-input {
-//     color: white !important;
-//     padding-left: '5%';
-//   }
-// `;
-
-export const StyledInputBase = styledM(InputBase)(({ theme }) => ({
+export const StyledInputBase = styledM(InputBase)(() => ({
   color: 'inherit',
   paddingLeft: '5%',
 }));

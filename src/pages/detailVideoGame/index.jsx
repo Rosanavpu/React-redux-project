@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import DetailVideogameComponent from './components';
-import { useLocation, useParams } from 'react-router-dom';
-import Loader from '../../shared/loader';
-import _ from 'lodash';
-import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { fetchVideoGameDetail } from '../../store/actions';
+import DetailVideogameComponent from './components';
+import _ from 'lodash';
 
 const DetailVideoGame = () => {
   const { videoGame } = useSelector(s => s.videogamesReducers);
