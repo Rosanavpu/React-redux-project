@@ -7,10 +7,17 @@ import { fetchVideoGameDetail } from '../../../store/actions';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import PropTypes from 'prop-types';
 
-const VideoGameComponent = ({ videoGames }) => {
+const VideoGameComponent = ({ videoGames, searchVideoGame }) => {
   const dispatch = useDispatch();
   return (
     <Container padding={'1%'}>
+      {videoGames && videoGames.length == 0 && searchVideoGame && searchVideoGame.length > 0 && (
+        <Container padding={'1%'}>
+          <Typography variant='h5' component='h2'>
+            Sorry, we can not find this VideoGame
+          </Typography>
+        </Container>
+      )}
       {videoGames &&
         videoGames.map((elem, index) => (
           <Container padding={'1%'} key={`card-container${index}`}>
@@ -42,6 +49,7 @@ const VideoGameComponent = ({ videoGames }) => {
 
 VideoGameComponent.propTypes = {
   videoGames: PropTypes.array,
+  searchVideoGame: PropTypes.array,
 };
 
 export default VideoGameComponent;
