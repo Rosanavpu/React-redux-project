@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   align-items: ${props => props.alignItems} !important;
@@ -18,11 +18,9 @@ export const Container = styled.div`
   padding: ${props => props.padding ?? 'auto'};
 `;
 
-export const StyledButton = styled(Button)`
-  text-transform: none;
-  .MuiButton-label {
-    color: #141a29;
-  }
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #3f51b5;
 `;
 
 export const StyledCardMedia = styled(CardMedia)`

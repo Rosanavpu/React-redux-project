@@ -1,17 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CardHeader, CardActions, IconButton, Typography } from '@material-ui/core';
 import { Container, StyledCardMedia, StyledCard } from './styles';
-import { fetchVideoGameDetail } from '../../../store/actions';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import PropTypes from 'prop-types';
 
-const VideoGameComponent = ({ videoGames, searchVideoGame }) => {
-  const dispatch = useDispatch();
+const VideoGameComponent = ({ videoGames, fetchingVideoGame }) => {
   return (
     <Container padding={'1%'}>
-      {videoGames && videoGames.length == 0 && searchVideoGame && searchVideoGame.length > 0 && (
+      {videoGames && videoGames.length == 0 && !fetchingVideoGame && (
         <Container padding={'1%'}>
           <Typography variant='h5' component='h2'>
             Sorry, we can not find this VideoGame
@@ -30,11 +27,7 @@ const VideoGameComponent = ({ videoGames, searchVideoGame }) => {
                     Detail
                   </Typography>
                   <Link to={`/videoGame/${elem.id}`} className='btn btn-primary'>
-                    <IconButton
-                      aria-label='add to favorites'
-                      onClick={() => {
-                        dispatch(fetchVideoGameDetail(elem.id));
-                      }}>
+                    <IconButton aria-label='add to favorites'>
                       <ArrowForwardIosIcon />
                     </IconButton>
                   </Link>
@@ -49,7 +42,7 @@ const VideoGameComponent = ({ videoGames, searchVideoGame }) => {
 
 VideoGameComponent.propTypes = {
   videoGames: PropTypes.array,
-  searchVideoGame: PropTypes.string,
+  fetchingVideoGame: PropTypes.bool,
 };
 
 export default VideoGameComponent;

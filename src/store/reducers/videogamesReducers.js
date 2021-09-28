@@ -2,22 +2,16 @@ import {
   FETCH_VIDEOGAMES_REQUEST,
   FETCH_VIDEOGAMES_SUCCESS,
   FETCH_VIDEOGAMES_ERROR,
-  FETCH_VIDEOGAME_DETAIL_REQUEST,
-  FETCH_VIDEOGAME_DETAIL_SUCCESS,
-  FETCH_VIDEOGAME_DETAIL_ERROR,
-  FETCH_VIDEOGAME_SEARCH,
+  FETCH_VIDEOGAME_BY_NAME,
 } from '../../utils/constants';
 
 const initialState = {
-  videoGame: {},
   videoGames: [],
-  isLoadingVideoGames: true,
+  isLoadingVideoGames: false,
   isSuccessVideoGames: false,
   isErrorVideoGames: false,
-  isLoadingVideogameDetail: false,
-  isSuccessVideogameDetail: false,
-  isErrorVideogameDetail: false,
   videoGameSearch: [],
+  searchVideoGameByName: '',
 };
 
 export default function videogamesReducers(state = initialState, action) {
@@ -35,7 +29,6 @@ export default function videogamesReducers(state = initialState, action) {
         ...state,
         videoGames: action.payload,
         isLoadingVideoGames: false,
-        isLoadingVideogameDetail: false,
         isSuccessVideoGames: true,
         isErrorVideoGames: false,
       };
@@ -49,39 +42,12 @@ export default function videogamesReducers(state = initialState, action) {
         isErrorVideoGames: true,
       };
     }
-    case FETCH_VIDEOGAME_DETAIL_REQUEST: {
+    case FETCH_VIDEOGAME_BY_NAME: {
       return {
         ...state,
-        isLoadingVideogameDetail: true,
-        isSuccessVideogameDetail: false,
-        isErrorVideogameDetail: false,
+        searchVideoGameByName: action.payload,
       };
     }
-    case FETCH_VIDEOGAME_DETAIL_SUCCESS: {
-      return {
-        ...state,
-        videoGame: action.payload,
-        isLoadingVideogameDetail: false,
-        isSuccessVideogameDetail: true,
-        isErrorVideogameDetail: false,
-        videoGames: [],
-      };
-    }
-    case FETCH_VIDEOGAME_DETAIL_ERROR: {
-      return {
-        ...state,
-        isLoadingVideogameDetail: false,
-        isSuccessVideogameDetail: false,
-        isErrorVideogameDetail: true,
-      };
-    }
-    case FETCH_VIDEOGAME_SEARCH: {
-      return {
-        ...state,
-        videoGameSearch: action.payload,
-      };
-    }
-
     default:
       return initialState;
   }

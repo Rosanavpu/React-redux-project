@@ -1,6 +1,6 @@
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import { AppBarContainer, Container, StyledButton, StyledInputBase } from './styles';
+import { AppBarContainer, Container, StyledLink, StyledInputBase } from './styles';
 import PropTypes from 'prop-types';
 
 const NavbarComponent = ({ handleChange, value, searchInput }) => {
@@ -8,7 +8,7 @@ const NavbarComponent = ({ handleChange, value, searchInput }) => {
     <Container>
       <AppBarContainer position='static'>
         <Toolbar>
-          <StyledButton href='/'>{'VideoGames'}</StyledButton>
+          <StyledLink to='/'>VideoGames</StyledLink>
           {searchInput && (
             <Container>
               <StyledInputBase
