@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import InputBase from '@material-ui/core/InputBase';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 export const AppBarContainer = styled(AppBar)`
   background-color: #141a29 !important;
@@ -16,7 +16,7 @@ export const Container = styled.div`
   margin-bottom: ${props => props.marginBottom};
   margin-left: ${props => props.marginLeft ?? 'auto'} !important;
   margin-right: ${props => props.marginRight ?? 'auto'} !important;
-  margin-top: ${props => props.marginTop };
+  margin-top: ${props => props.marginTop};
   width: ${props => props.width};
   min-height: ${prop => prop.height};
   background-color: #666765;
@@ -34,11 +34,9 @@ export const StyledInputBase = styled(InputBase)`
   }
   ,
 `;
-
-export const StyledButton = styled(Button)`
-  .MuiButton-label {
-    text-transform: none;
-    color: white;
-    font-size: 20px;
-  }
+  
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  font-size: 20px;
+  color:white;
 `;

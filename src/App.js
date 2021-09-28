@@ -13,8 +13,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={VideoGames} />
           <Route exact path='/videoGame/:id' component={DetailVideoGame} />
-          <Route path='*' exact={true} component={PageNotFound} />
-          {/* <Route component={PageNotFound} /> */}
+          <Route path='*' exact component={PageNotFound} />
         </Switch>
       </div>
     </Router>
