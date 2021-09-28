@@ -9,13 +9,13 @@ const DetailVideoGame = () => {
   const { videoGame } = useSelector(s => s.detailVideoGameReducers);
   const dispatch = useDispatch();
   const { id } = useParams();
-  let existVideoGame = !isEmpty(videoGame);
+  let videoGameExists = !isEmpty(videoGame);
 
   useEffect(() => {
     dispatch(fetchVideoGameDetail(id));
   }, []);
 
-  return existVideoGame && <DetailVideogameComponent videoGame={videoGame} />;
+  return videoGameExists && <DetailVideogameComponent videoGame={videoGame} />;
 };
 
 export default DetailVideoGame;
