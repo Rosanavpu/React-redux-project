@@ -3,19 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchVideoGameDetail } from '../../store/actions/detailVideoGame';
 import DetailVideogameComponent from './components';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 
 const DetailVideoGame = () => {
   const { videoGame } = useSelector(s => s.detailVideoGameReducers);
   const dispatch = useDispatch();
   const { id } = useParams();
-  let isNotEmpty = _.isEmpty(videoGame);
+  let existVideoGame = !isEmpty(videoGame);
 
   useEffect(() => {
     dispatch(fetchVideoGameDetail(id));
   }, []);
 
-  return !isNotEmpty && <DetailVideogameComponent videoGame={videoGame} />;
+  return existVideoGame && <DetailVideogameComponent videoGame={videoGame} />;
 };
 
 export default DetailVideoGame;
